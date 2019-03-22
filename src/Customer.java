@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.*;
 
 public class Customer {
     private static int nextId = 1;
@@ -38,8 +39,21 @@ public class Customer {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Chcesz stworzyć profil?" + "\n" + "Wybierz:" + "\n" + "1. Utwórz profil." + "\n" + "2. Nie jestem zainteresowany/a."+ "\n"+"3. Przejdź dalej.");
         int answer = 0;
+
         do {
-            answer = scanner.nextInt();
+            boolean isInputCorrect = true;
+            do {
+                try {
+                    answer = scanner.nextInt();
+                    isInputCorrect = false;
+                } catch (InputMismatchException exp) {
+                    //exp.printStackTrace();
+                    System.err.println("Złe dane wejściowe.");
+                    scanner.nextLine();          //czyszczenie linii, be tego się zapętla
+                    System.out.println("Wybierz ponownie:" + "\n" + "1. Utwórz profil." + "\n" + "2. Nie jestem zainteresowany/a."+ "\n"+"3. Przejdź dalej.");
+                }
+            } while (isInputCorrect);
+
             switch (answer) {
                 case 1:
                     break;
@@ -49,7 +63,7 @@ public class Customer {
                 case 3:
                     break;
                 default:
-                    System.out.println("Nie wybrałeś, żadnego wariantu. Sprubój ponownie.");
+                    System.out.println("Nie wybrałeś żadnego wariantu. Sprubój ponownie.");
                     break;
             }
         }
@@ -60,9 +74,9 @@ public class Customer {
     static Customer createCustomer() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Podaj imie:");
-        String name = scanner.nextLine();
+        String name = scanner.next();
         System.out.println("Podaj nazwisko:");
-        String surname = scanner.nextLine();
+        String surname = scanner.next();
         Customer customer = new Customer(name, surname);
         return customer;
     }
