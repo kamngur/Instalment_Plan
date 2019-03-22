@@ -7,9 +7,12 @@ public class Customer {
     private String name;
     private String surname;
 
-    public Customer(String name, String surname) {
-        this.name = name;
-        this.surname = surname;
+    public Customer() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj imie:");
+        this.name = scanner.next();
+        System.out.println("Podaj nazwisko:");
+        this.surname = scanner.next();
     }
 
     public static int assignId() {
@@ -71,13 +74,4 @@ public class Customer {
         return answer;
     }
 
-    static Customer createCustomer() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Podaj imie:");
-        String name = scanner.next();
-        System.out.println("Podaj nazwisko:");
-        String surname = scanner.next();
-        Customer customer = new Customer(name, surname);
-        return customer;
-    }
 }
