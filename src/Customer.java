@@ -35,14 +35,12 @@ public class Customer {
 
     @Override
     public String toString() {
-        return (this.id + " " + this.name + " " + this.surname);
+        return ("ID " + this.id + " " + this.name + " " + this.surname);
     }
 
     static int createProfile() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Chcesz stworzyć profil?" + "\n" + "Wybierz:" + "\n" + "1. Utwórz profil." + "\n" + "2. Nie jestem zainteresowany/a."+ "\n"+"3. Przejdź dalej.");
         int answer = 0;
-
         do {
             boolean isInputCorrect = true;
             do {
@@ -73,5 +71,33 @@ public class Customer {
         while (answer != 1 && answer != 2 && answer != 3);
         return answer;
     }
+
+    static ArrayList<Customer> createMoreProfile() {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Customer> listCustomer = new ArrayList<Customer>();
+        System.out.println("Chcesz stworzyć profil?" + "\n" + "Wybierz:" + "\n" + "1. Utwórz profil." + "\n" + "2. Nie jestem zainteresowany/a."+ "\n"+"3. Przejdź dalej.");
+        int i = 0;
+        do {
+            i = createProfile();
+            if (i == 1) {
+                Customer customer = new Customer();
+                System.out.println("Profil: " + customer);
+                System.out.println();
+                listCustomer.add(customer);
+            } else {
+                if (i == 2) {
+                    System.exit(0);
+                }
+                else {
+                    break;
+                }
+            }
+            System.out.println("Stworzyć kolejny?" + "\n" + "Wybierz:" + "\n" + "1. Tak, stwórz kolejny profil." + "\n" + "2. Nie, wychodzę z programu." + "\n" + "3. Nie, przechodzę dalej. ");
+
+        } while (i==1);
+        return listCustomer;
+    }
+
+
 
 }
