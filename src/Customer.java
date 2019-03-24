@@ -7,7 +7,7 @@ public class Customer {
     private String name;
     private String surname;
 
-    public Customer() {
+    public Customer() { // konstruktor jest po to by zainicjować obiekt, wczytanie danych w konsoli powinno być w innym obiekcie np class ObjectLoader
         Scanner scanner = new Scanner(System.in);
         System.out.println("Podaj imie:");
         this.name = scanner.next();
@@ -38,7 +38,7 @@ public class Customer {
         return ("ID " + this.id + " " + this.name + " " + this.surname);
     }
 
-    static int createProfile() {
+    static int createProfile() { // logika wczytywnia danych z źródła powinna być rozdzielona od logiki obiektu
         Scanner scanner = new Scanner(System.in);
         int answer = 0;
         do {
@@ -49,7 +49,7 @@ public class Customer {
                     isInputCorrect = false;
                 } catch (InputMismatchException exp) {
                     //exp.printStackTrace();
-                    System.err.println("Złe dane wejściowe.");
+                    System.err.println("Złe dane wejściowe."); // do logowania  polecam zerknąć na biblioteke log4j
                     scanner.nextLine();          //czyszczenie linii, be tego się zapętla
                     System.out.println("Wybierz ponownie:" + "\n" + "1. Utwórz profil." + "\n" + "2. Nie jestem zainteresowany/a."+ "\n"+"3. Przejdź dalej.");
                 }
